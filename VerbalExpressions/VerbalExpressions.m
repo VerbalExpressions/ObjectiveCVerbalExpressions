@@ -25,7 +25,9 @@
 + (VerbalExpressions *)instantiate:(void (^)(VerbalExpressions *))block
 {
     VerbalExpressions *verEx = [[VerbalExpressions alloc] init];
-    block(verEx);
+    if (block) {
+        block(verEx);
+    }
     
     return verEx;
 }
