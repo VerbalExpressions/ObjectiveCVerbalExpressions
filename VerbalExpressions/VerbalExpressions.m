@@ -16,7 +16,7 @@
 @property (nonatomic) NSString *pattern;
 @property (nonatomic) NSRegularExpressionOptions modifiers;
 
-@property (nonatomic, copy) VerbalExpressions *(^add)(NSString *value);
+@property (nonatomic, readonly) VerbalExpressions *(^add)(NSString *value);
 
 @end
 
