@@ -15,8 +15,7 @@ Here's a couple of simple examples to give an idea of how VerbalExpressions work
 ```objc
 // Create an example of how to test for correctly formed URLs
 VerbalExpressions *verEx = [VerbalExpressions instantiate:^(VerbalExpressions *ve) {
-    ve
-    .startOfLine(YES)
+    ve.startOfLine(YES)
     .then(@"http")
     .maybe(@"s")
     .then(@"://")
@@ -35,7 +34,13 @@ if (verEx.test(testMe)) {
     NSLog(@"%@", @"The URL is incorrect");
 }
 
-NSLog(@"%@", verEx); // Ouputs the actual expression used: "^(http)(s)?(:\/\/)(www)?([^ ]*)$"
+NSLog(@"%@", verEx); // Ouputs the actual expression used: "^(http)(s)?(:Å_/Å_/)(www)?([^ ]*)$"
+```
+
+### Convienience initializer
+```objc
+VerbalExpressions *verEx = [VerbalExpressions expressions];
+verEx.startOfLine(YES).then(@"http").maybe(@"s").then(@"://").maybe(@"www").anythingBut(@" ").endOfLine(YES);
 ```
 
 ### Replacing strings

@@ -32,6 +32,11 @@
     return verEx;
 }
 
++ (VerbalExpressions *)expressions
+{
+    return [[VerbalExpressions alloc] init];
+}
+
 - (id)init
 {
     self = [super init];

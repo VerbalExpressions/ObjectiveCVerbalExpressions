@@ -36,5 +36,6 @@
 @property (nonatomic, readonly) NSRegularExpression *regularExpression;
 
 + (VerbalExpressions *)instantiate:(void (^)(VerbalExpressions *ve))block;
++ (VerbalExpressions *)expressions;
 
 @end

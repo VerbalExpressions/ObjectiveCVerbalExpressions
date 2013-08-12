@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name         = "VerbalExpressions"
+  s.name         = "VEVerbalExpressions"
   s.version      = "0.1.0"
   s.summary      = "Objective-C Regular Expressions made easy"
   s.homepage     = "https://github.com/kishikawakatsumi/ObjectiveCVerbalExpressions"
