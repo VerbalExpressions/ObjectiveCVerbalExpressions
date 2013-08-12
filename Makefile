@@ -4,8 +4,8 @@ TEST_TARGET = VerbalExpressionsTests
 test:
 	xcodebuild \
 		-project $(PROJECT) \
+		-target $(TEST_TARGET) \
 		-sdk iphonesimulator \
-		-scheme Tests \
 		-configuration Debug \
 		clean build \
 		ONLY_ACTIVE_ARCH=NO \
@@ -14,8 +14,8 @@ test:
 test-with-coverage:
 	xcodebuild \
 		-project $(PROJECT) \
+		-target $(TEST_TARGET) \
 		-sdk iphonesimulator \
-		-scheme Tests \
 		-configuration Debug \
 		clean build \
 		ONLY_ACTIVE_ARCH=NO \

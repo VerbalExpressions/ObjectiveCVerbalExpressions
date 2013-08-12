@@ -418,7 +418,6 @@
 				GCC_PREFIX_HEADER = "VerbalExpressions/VerbalExpressions-Prefix.pch";
 				INFOPLIST_FILE = "VerbalExpressionsTests/VerbalExpressionsTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -435,7 +434,6 @@
 				GCC_PREFIX_HEADER = "VerbalExpressions/VerbalExpressions-Prefix.pch";
 				INFOPLIST_FILE = "VerbalExpressionsTests/VerbalExpressionsTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
