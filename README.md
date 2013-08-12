@@ -1,10 +1,19 @@
 ObjectiveCVerbalExpressions
 =====================
+![version](http://cocoapod-badges.herokuapp.com/v/VEVerbalExpressions/badge.svg)
+![platform](http://cocoapod-badges.herokuapp.com/p/VEVerbalExpressions/badge.svg)
 [![Build Status](https://travis-ci.org/kishikawakatsumi/ObjectiveCVerbalExpressions.png?branch=master)](https://travis-ci.org/kishikawakatsumi/ObjectiveCVerbalExpressions)
 [![Coverage Status](https://coveralls.io/repos/kishikawakatsumi/ObjectiveCVerbalExpressions/badge.png?branch=master)](https://coveralls.io/r/kishikawakatsumi/ObjectiveCVerbalExpressions?branch=master)
 
 ## Objective-C Regular Expressions made easy
 ObjectiveCVerbalExpressions is a Objective-C library that helps to construct difficult regular expressions - ported from the awesome JavaScript [VerbalExpressions](https://github.com/jehna/VerbalExpressions).
+
+## Installation
+### From [Cocoapods](http://cocoapods.org/)
+`pod 'VEVerbalExpressions'`
+
+### From source
+Drags `VerbalExpressions.h` and `VerbalExpressions.m` into your projects and `import "VerbalExpressions.h"`
 
 ## Examples
 
