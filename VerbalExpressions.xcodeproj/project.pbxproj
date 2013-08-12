@@ -23,6 +23,8 @@
 		1481B6C017B8127400EA9DA4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1481B6BD17B8127400EA9DA4 /* Default-568h@2x.png */; };
 		1481B6C317B8AEDA00EA9DA4 /* VerbalExpressions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1481B6C217B8AEDA00EA9DA4 /* VerbalExpressions.m */; };
 		1481B6C417B8AEDA00EA9DA4 /* VerbalExpressions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1481B6C217B8AEDA00EA9DA4 /* VerbalExpressions.m */; };
+		F98A791417B950B100B0871D /* OCVerbalExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = F98A791317B950B100B0871D /* OCVerbalExpression.m */; };
+		F98A791517B950B100B0871D /* OCVerbalExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = F98A791317B950B100B0871D /* OCVerbalExpression.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		1481B6BD17B8127400EA9DA4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1481B6C117B8AEDA00EA9DA4 /* VerbalExpressions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VerbalExpressions.h; path = Lib/VerbalExpressions.h; sourceTree = SOURCE_ROOT; };
 		1481B6C217B8AEDA00EA9DA4 /* VerbalExpressions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VerbalExpressions.m; path = Lib/VerbalExpressions.m; sourceTree = SOURCE_ROOT; };
+		F98A791217B950B100B0871D /* OCVerbalExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCVerbalExpression.h; sourceTree = "<group>"; };
+		F98A791317B950B100B0871D /* OCVerbalExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCVerbalExpression.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +163,8 @@
 		1481B6C517B8AEDF00EA9DA4 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				F98A791217B950B100B0871D /* OCVerbalExpression.h */,
+				F98A791317B950B100B0871D /* OCVerbalExpression.m */,
 				1481B6C117B8AEDA00EA9DA4 /* VerbalExpressions.h */,
 				1481B6C217B8AEDA00EA9DA4 /* VerbalExpressions.m */,
 			);
@@ -284,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1481B64517B7FE7200EA9DA4 /* main.m in Sources */,
+				F98A791417B950B100B0871D /* OCVerbalExpression.m in Sources */,
 				1481B64917B7FE7200EA9DA4 /* AppDelegate.m in Sources */,
 				1481B6C317B8AEDA00EA9DA4 /* VerbalExpressions.m in Sources */,
 			);
@@ -293,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F98A791517B950B100B0871D /* OCVerbalExpression.m in Sources */,
 				1481B6C417B8AEDA00EA9DA4 /* VerbalExpressions.m in Sources */,
 				1481B66417B7FE7300EA9DA4 /* VerbalExpressionsTests.m in Sources */,
 			);

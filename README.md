@@ -14,20 +14,20 @@ Here's a couple of simple examples to give an idea of how VerbalExpressions work
 
 ```objc
 // Create an example of how to test for correctly formed URLs
-VerbalExpressions *tester = VerEx()
-.startOfLine(YES)
-.then(@"http")
-.maybe(@"s")
-.then(@"://")
-.maybe(@"www")
-.anythingBut(@" ")
-.endOfLine(YES);
+OCVerbalExpression *expressions = [[OCVerbalExpression alloc] init];
+[expressions startOfLine:YES];
+[expressions then:@"http"];
+[expressions maybe:@"s"];
+[expressions then:@"://"];
+[expressions maybe:@"www"];
+[expressions anythingBut:@" "];
+[expressions endOfLine:YES];
 
 // Create an example URL
 NSString *testMe = @"https://www.google.com";
 
-// Use test() method
-if (tester.test(testMe)) {
+// Use test: method
+if ([expressions test:testMe]) {
     NSLog(@"%@", @"We have a correct URL"); // This output will fire
 } else {
     NSLog(@"%@", @"The URL is incorrect");
@@ -42,10 +42,11 @@ NSLog(@"%@", tester); // Ouputs the actual expression used: "^(http)(s)?(:Å_/Å_/
 NSString *replaceMe = @"Replace bird with a duck";
 
 // Create an expression that seeks for word "bird"
-VerbalExpressions *verEx = VerEx().find(@"bird");
+OCVerbalExpression *expressions1 = [[OCVerbalExpression alloc] init];
+[expressions1 find:@"bird"];
 
 // Execute the expression like a normal RegExp object
-NSString *result = verEx.replace(replaceMe, @"duck" );
+NSString *result = [expressions1 replaceWithSource:replaceMe value:@"duck"];
 
 NSLog(@"%@", result); // Outputs "Replace duck with a duck"
 ```
@@ -53,7 +54,7 @@ NSLog(@"%@", result); // Outputs "Replace duck with a duck"
 ### Shorthand for string replace:
 
 ```objc
-NSString *result2 = VerEx().find(@"red").replace(@"We have a red house", @"blue");
+NSString *result2 = [[[OCVerbalExpression new] find:@"red"] replaceWithSource:@"We have a red house" value:@"blue"];
 
 NSLog(@"%@", result2); // Outputs "We have a blue house"
 ```
