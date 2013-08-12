@@ -21,37 +21,6 @@
     [super tearDown];
 }
 
-- (void)testSomething
-{
-    VerbalExpressions *verEx = VerEx().something();
-    
-    STAssertFalse(verEx.test(@""), @"empty string doesn't have something");
-    STAssertTrue(verEx.test(@"a"), @"a is something");
-}
-
-- (void)testAnything
-{
-    VerbalExpressions *verEx = VerEx().startOfLine(YES).anything();
-    
-    STAssertTrue(verEx.test(@"what"), @"anything is matched");
-}
-
-- (void)testAnythingBut
-{
-    VerbalExpressions *verEx = VerEx().startOfLine(YES).anythingBut(@"w");
-    
-    STAssertTrue(verEx.test(@"what"), @"starts with w");
-}
-
-- (void)testSomethingBut
-{
-    VerbalExpressions *verEx = VerEx().somethingBut(@"a");
-    
-    STAssertFalse(verEx.test(@""), @"empty string doesn't have something");
-    STAssertTrue(verEx.test(@"b"), @"doesn't start with a");    
-    STAssertFalse(verEx.test(@"a"), @"starts with a");
-}
-
 - (void)testStartOfLine
 {
     VerbalExpressions *verEx = VerEx().startOfLine(YES).then(@"a");
@@ -76,20 +45,47 @@
     STAssertTrue(verEx.test(@"abc"), @"maybe has a b after an a");
 }
 
-- (void)testAnyOf
+- (void)testAnything
 {
-    VerbalExpressions *verEx = VerEx().startOfLine(YES).then(@"a").anyOf(@"xyz");
+    VerbalExpressions *verEx = VerEx().startOfLine(YES).anything();
     
-    STAssertTrue(verEx.test(@"ay"), @"has an x, y, or z after a");
-    STAssertFalse(verEx.test(@"abc"), @"doesn't have an x, y, or z after a");
+    STAssertTrue(verEx.test(@"what"), @"anything is matched");
 }
 
-- (void)testOr
+- (void)testAnythingBut
 {
-    VerbalExpressions *verEx = VerEx().startOfLine(YES).then(@"abc").or(@"def");
+    VerbalExpressions *verEx = VerEx().startOfLine(YES).anythingBut(@"w");
     
-    STAssertTrue(verEx.test(@"defzzz"), @"starts with abc or def");
-    STAssertFalse(verEx.test(@"xyzabc"), @"doesn't start with abc or def");
+    STAssertTrue(verEx.test(@"what"), @"starts with w");
+}
+
+- (void)testSomething
+{
+    VerbalExpressions *verEx = VerEx().something();
+    
+    STAssertFalse(verEx.test(@""), @"empty string doesn't have something");
+    STAssertTrue(verEx.test(@"a"), @"a is something");
+}
+
+- (void)testSomethingBut
+{
+    VerbalExpressions *verEx = VerEx().somethingBut(@"a");
+    
+    STAssertFalse(verEx.test(@""), @"empty string doesn't have something");
+    STAssertTrue(verEx.test(@"b"), @"doesn't start with a");    
+    STAssertFalse(verEx.test(@"a"), @"starts with a");
+}
+
+- (void)testReplace
+{
+    NSString *testString = @"replace bird with a duck";
+    
+    VerbalExpressions *verEx = VerEx().find(@"bird");
+    
+    NSString *testStringAfterReplacement = verEx.replace(testString, @"duck");
+    NSString *expectedStringAfterReplacement = @"replace duck with a duck";
+    
+    STAssertEqualObjects(testStringAfterReplacement, expectedStringAfterReplacement, @"replaced 'bird' with 'duck'");
 }
 
 - (void)testLineBreak
@@ -116,6 +112,14 @@
     STAssertFalse(verEx.test(@"abc"), @"no tab then abc");
 }
 
+- (void)testAnyOf
+{
+    VerbalExpressions *verEx = VerEx().startOfLine(YES).then(@"a").anyOf(@"xyz");
+    
+    STAssertTrue(verEx.test(@"ay"), @"has an x, y, or z after a");
+    STAssertFalse(verEx.test(@"abc"), @"doesn't have an x, y, or z after a");
+}
+
 - (void)testWithAnyCase
 {
     VerbalExpressions *verEx = VerEx().startOfLine(YES).then(@"a");
@@ -128,18 +132,6 @@
     STAssertTrue(verEx.test(@"a"), @"case insensitive");
 }
 
-- (void)testReplace
-{
-    NSString *testString = @"Replace bird with a duck";
-
-    VerbalExpressions *verEx = VerEx().find(@"bird");
-
-    NSString *testStringAfterReplacement = verEx.replace(testString, @"duck");
-    NSString *expectedStringAfterReplacement = @"Replace duck with a duck";
-
-    STAssertEqualObjects(testStringAfterReplacement, expectedStringAfterReplacement, @"Replaced 'bird' with 'duck'");
-}
-
 - (void)testSearchOneLine
 {
     VerbalExpressions *verEx = VerEx().startOfLine(YES).then(@"a").br().then(@"b").endOfLine(YES);
@@ -149,6 +141,14 @@
     verEx.searchOneLine(YES);
     
     STAssertTrue(verEx.test(@"a\nb"), @"b is on the second line but we are only searching the first");
+}
+
+- (void)testOr
+{
+    VerbalExpressions *verEx = VerEx().startOfLine(YES).then(@"abc").or(@"def");
+    
+    STAssertTrue(verEx.test(@"defzzz"), @"starts with abc or def");
+    STAssertFalse(verEx.test(@"xyzabc"), @"doesn't start with abc or def");
 }
 
 - (void)testURL
