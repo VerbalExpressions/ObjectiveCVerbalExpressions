@@ -154,6 +154,20 @@
     STAssertTrue(verEx.test(@"a"), @"case insensitive");
 }
 
+- (void)testReplace
+{
+    NSString *testString = @"Replace bird with a duck";
+
+    VerbalExpressions *verEx = [VerbalExpressions instantiate:^(VerbalExpressions *ve) {
+        ve.find(@"bird");
+    }];
+
+    NSString *testStringAfterReplacement = verEx.replace(testString, @"duck");
+    NSString *expectedStringAfterReplacement = @"Replace duck with a duck";
+
+    STAssertEqualObjects(testStringAfterReplacement, expectedStringAfterReplacement, @"Replaced 'bird' with 'duck'");
+}
+
 - (void)testSearchOneLine
 {
     VerbalExpressions *verEx = [VerbalExpressions instantiate:^(VerbalExpressions *ve) {
