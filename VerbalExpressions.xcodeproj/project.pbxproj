@@ -18,11 +18,11 @@
 		1481B65917B7FE7300EA9DA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1481B63A17B7FE7200EA9DA4 /* Foundation.framework */; };
 		1481B66117B7FE7300EA9DA4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1481B65F17B7FE7300EA9DA4 /* InfoPlist.strings */; };
 		1481B66417B7FE7300EA9DA4 /* VerbalExpressionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1481B66317B7FE7300EA9DA4 /* VerbalExpressionsTests.m */; };
-		1481B66F17B7FE9100EA9DA4 /* VerbalExpressions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1481B66E17B7FE9100EA9DA4 /* VerbalExpressions.m */; };
-		1481B67017B7FE9100EA9DA4 /* VerbalExpressions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1481B66E17B7FE9100EA9DA4 /* VerbalExpressions.m */; };
 		1481B6BE17B8127400EA9DA4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1481B6BB17B8127400EA9DA4 /* Default.png */; };
 		1481B6BF17B8127400EA9DA4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1481B6BC17B8127400EA9DA4 /* Default@2x.png */; };
 		1481B6C017B8127400EA9DA4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1481B6BD17B8127400EA9DA4 /* Default-568h@2x.png */; };
+		1481B6C317B8AEDA00EA9DA4 /* VerbalExpressions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1481B6C217B8AEDA00EA9DA4 /* VerbalExpressions.m */; };
+		1481B6C417B8AEDA00EA9DA4 /* VerbalExpressions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1481B6C217B8AEDA00EA9DA4 /* VerbalExpressions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,11 +52,11 @@
 		1481B66017B7FE7300EA9DA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1481B66217B7FE7300EA9DA4 /* VerbalExpressionsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VerbalExpressionsTests.h; sourceTree = "<group>"; };
 		1481B66317B7FE7300EA9DA4 /* VerbalExpressionsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VerbalExpressionsTests.m; sourceTree = "<group>"; };
-		1481B66D17B7FE9100EA9DA4 /* VerbalExpressions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerbalExpressions.h; sourceTree = "<group>"; };
-		1481B66E17B7FE9100EA9DA4 /* VerbalExpressions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerbalExpressions.m; sourceTree = "<group>"; };
 		1481B6BB17B8127400EA9DA4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		1481B6BC17B8127400EA9DA4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		1481B6BD17B8127400EA9DA4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		1481B6C117B8AEDA00EA9DA4 /* VerbalExpressions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VerbalExpressions.h; path = Lib/VerbalExpressions.h; sourceTree = SOURCE_ROOT; };
+		1481B6C217B8AEDA00EA9DA4 /* VerbalExpressions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VerbalExpressions.m; path = Lib/VerbalExpressions.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,10 +116,8 @@
 		1481B63E17B7FE7200EA9DA4 /* VerbalExpressions */ = {
 			isa = PBXGroup;
 			children = (
-				1481B64717B7FE7200EA9DA4 /* AppDelegate.h */,
-				1481B64817B7FE7200EA9DA4 /* AppDelegate.m */,
-				1481B66D17B7FE9100EA9DA4 /* VerbalExpressions.h */,
-				1481B66E17B7FE9100EA9DA4 /* VerbalExpressions.m */,
+				1481B6C517B8AEDF00EA9DA4 /* Lib */,
+				1481B6C617B8AEEF00EA9DA4 /* Sample */,
 				1481B63F17B7FE7200EA9DA4 /* Supporting Files */,
 			);
 			path = VerbalExpressions;
@@ -156,6 +154,24 @@
 				1481B65F17B7FE7300EA9DA4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1481B6C517B8AEDF00EA9DA4 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				1481B6C117B8AEDA00EA9DA4 /* VerbalExpressions.h */,
+				1481B6C217B8AEDA00EA9DA4 /* VerbalExpressions.m */,
+			);
+			name = Lib;
+			sourceTree = "<group>";
+		};
+		1481B6C617B8AEEF00EA9DA4 /* Sample */ = {
+			isa = PBXGroup;
+			children = (
+				1481B64717B7FE7200EA9DA4 /* AppDelegate.h */,
+				1481B64817B7FE7200EA9DA4 /* AppDelegate.m */,
+			);
+			name = Sample;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,7 +285,7 @@
 			files = (
 				1481B64517B7FE7200EA9DA4 /* main.m in Sources */,
 				1481B64917B7FE7200EA9DA4 /* AppDelegate.m in Sources */,
-				1481B66F17B7FE9100EA9DA4 /* VerbalExpressions.m in Sources */,
+				1481B6C317B8AEDA00EA9DA4 /* VerbalExpressions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,8 +293,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1481B6C417B8AEDA00EA9DA4 /* VerbalExpressions.m in Sources */,
 				1481B66417B7FE7300EA9DA4 /* VerbalExpressionsTests.m in Sources */,
-				1481B67017B7FE9100EA9DA4 /* VerbalExpressions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +459,7 @@
 				1481B66917B7FE7300EA9DA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1481B66A17B7FE7300EA9DA4 /* Build configuration list for PBXNativeTarget "VerbalExpressionsTests" */ = {
 			isa = XCConfigurationList;
@@ -451,6 +468,7 @@
 				1481B66C17B7FE7300EA9DA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
