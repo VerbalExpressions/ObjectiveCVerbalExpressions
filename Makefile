@@ -9,7 +9,8 @@ test:
 		-configuration Debug \
 		clean build \
 		ONLY_ACTIVE_ARCH=NO \
-		TEST_AFTER_BUILD=YES
+		TEST_AFTER_BUILD=YES \
+		TEST_HOST=""
 		
 test-with-coverage:
 	xcodebuild \
@@ -20,6 +21,7 @@ test-with-coverage:
 		clean build \
 		ONLY_ACTIVE_ARCH=NO \
 		TEST_AFTER_BUILD=YES \
+		TEST_HOST="" \
 		GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES \
 		GCC_GENERATE_TEST_COVERAGE_FILES=YES
 		
