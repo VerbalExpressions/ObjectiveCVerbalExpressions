@@ -37,5 +37,6 @@
 
 + (VerbalExpressions *)instantiate:(void (^)(VerbalExpressions *ve))block;
 + (VerbalExpressions *)expressions;
+extern VerbalExpressions *VerEx();
 
 @end
