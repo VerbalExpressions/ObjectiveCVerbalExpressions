@@ -1,7 +1,7 @@
 ObjectiveCVerbalExpressions
 =====================
-[![Build Status](https://travis-ci.org/kishikawakatsumi/ObjectiveCVerbalExpressions.png)](https://travis-ci.org/kishikawakatsumi/ObjectiveCVerbalExpressions)
-[![Coverage](https://coveralls.io/repos/kishikawakatsumi/ObjectiveCVerbalExpressions/badge.png)](https://coveralls.io/r/kishikawakatsumi/ObjectiveCVerbalExpressions)
+[![Build Status](https://travis-ci.org/kishikawakatsumi/ObjectiveCVerbalExpressions.png?branch=master)](https://travis-ci.org/kishikawakatsumi/ObjectiveCVerbalExpressions)
+[![Coverage Status](https://coveralls.io/repos/kishikawakatsumi/ObjectiveCVerbalExpressions/badge.png?branch=master)](https://coveralls.io/r/kishikawakatsumi/ObjectiveCVerbalExpressions?branch=master)
 
 ## Objective-C Regular Expressions made easy
 ObjectiveCVerbalExpressions is a Objective-C library that helps to construct difficult regular expressions - ported from the awesome JavaScript [VerbalExpressions](https://github.com/jehna/VerbalExpressions).
