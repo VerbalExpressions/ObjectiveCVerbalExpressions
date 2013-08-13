@@ -42,7 +42,7 @@ if (tester.test(testMe)) {
     NSLog(@"%@", @"The URL is incorrect");
 }
 
-NSLog(@"%@", tester); // Ouputs the actual expression used: "^(http)(s)?(:Å_/Å_/)(www)?([^ ]*)$"
+NSLog(@"%@", tester); // Ouputs the actual expression used: "^(http)(s)?(:ÔøΩ_/ÔøΩ_/)(www)?([^ ]*)$"
 ```
 
 ### Replacing strings
@@ -80,3 +80,6 @@ Pull requests are warmly welcomed!
 
 ## Thanks!
 Thank you to @jehna for coming up with the awesome original idea!
+
+## Other implementations  
+You can view all implementations on [VerbalExpressions.github.io](http://VerbalExpressions.github.io)
