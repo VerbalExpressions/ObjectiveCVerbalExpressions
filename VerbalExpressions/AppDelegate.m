@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "VerbalExpressions.h"
+#import "OCVerbalExpression.h"
 
 @implementation AppDelegate
 
@@ -17,26 +17,27 @@
      * Testing if we have a valid URL
      */
     // Create an example of how to test for correctly formed URLs
-    VerbalExpressions *tester = VerEx()
-    .startOfLine(YES)
-    .then(@"http")
-    .maybe(@"s")
-    .then(@"://")
-    .maybe(@"www")
-    .anythingBut(@" ")
-    .endOfLine(YES);
     
+    OCVerbalExpression *expressions = [[OCVerbalExpression alloc] init];
+    [expressions startOfLine:YES];
+    [expressions then:@"http"];
+    [expressions maybe:@"s"];
+    [expressions then:@"://"];
+    [expressions maybe:@"www"];
+    [expressions anythingBut:@" "];
+    [expressions endOfLine:YES];
     // Create an example URL
     NSString *testMe = @"https://www.google.com";
     
-    // Use test() method
-    if (tester.test(testMe)) {
+    // Use test: method
+    
+    if ([expressions test:testMe]) {
         NSLog(@"%@", @"We have a correct URL"); // This output will fire
     } else {
         NSLog(@"%@", @"The URL is incorrect");
     }
     
-    NSLog(@"%@", tester); // Ouputs the actual expression used: "^(http)(s)?(:\/\/)(www)?([^ ]*)$"
+    NSLog(@"%@", expressions); // Ouputs the actual expression used: "^(http)(s)?(:\/\/)(www)?([^ ]*)$"
     
     /*
      * Replacing strings
@@ -45,19 +46,16 @@
     NSString *replaceMe = @"Replace bird with a duck";
     
     // Create an expression that seeks for word "bird"
-    VerbalExpressions *verEx = VerEx().find(@"bird");
+    
+    OCVerbalExpression *expressions1 = [[OCVerbalExpression alloc] init];
+    [expressions1 find:@"bird"];
     
     // Execute the expression like a normal RegExp object
-    NSString *result1 = verEx.replace(replaceMe, @"duck" );
+    NSString *result1 = [expressions1 replaceWithSource:replaceMe value:@"duck"]; //expression.replace(replaceMe, @"duck" );
     
     NSLog(@"%@", result1); // Outputs "Replace duck with a duck"
     
-    /*
-     * Shorthand for string replace:
-     */
-    NSString *result2 = VerEx().find(@"red").replace(@"We have a red house", @"blue");
     
-    NSLog(@"%@", result2); // Outputs "We have a blue house"
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
