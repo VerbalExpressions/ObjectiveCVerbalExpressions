@@ -118,7 +118,7 @@ VerbalExpressions *VerEx()
 - (VerbalExpressions *(^)())something
 {
     return ^VerbalExpressions *() {
-        self.add(@"(.+)");
+        self.add(@"(?:.+)");
         return self;
     };
 }
@@ -127,7 +127,7 @@ VerbalExpressions *VerEx()
 {
     return ^VerbalExpressions *(NSString *value) {
         value = [self sanitize:value];
-        self.add([NSString stringWithFormat:@"([^%@]+)", value]);
+        self.add([NSString stringWithFormat:@"(?:[^%@]+)", value]);
         return self;
     };
 }
@@ -136,7 +136,7 @@ VerbalExpressions *VerEx()
 {
     return ^NSString *(NSString *source, NSString *value) {
         self.add(@"");
-        return [self.regularExpression stringByReplacingMatchesInString:source options:kNilOptions range:NSMakeRange(0, source.length) withTemplate:value];
+        return [self.regex stringByReplacingMatchesInString:source options:kNilOptions range:NSMakeRange(0, source.length) withTemplate:value];
     };
 }
 
@@ -311,6 +311,11 @@ VerbalExpressions *VerEx()
     }
     
     return regex;
+}
+
+- (NSRegularExpression *)regex
+{
+    return self.regularExpression;
 }
 
 - (NSString *)description
