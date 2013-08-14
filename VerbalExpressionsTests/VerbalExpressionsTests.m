@@ -37,6 +37,14 @@
     STAssertFalse(verEx.test(@"ab"), @"doesn't end with a");
 }
 
+- (void)testFind
+{
+    VerbalExpressions *verEx = VerEx().find(@"lions");
+    NSLog(@"%@", verEx.regularExpression.pattern);
+    STAssertEqualObjects(@"(?:lions)", verEx.regularExpression.pattern, @"correctly build find regex");
+    STAssertTrue(verEx.test(@"lions"), @"correctly match find");
+}
+
 - (void)testMaybe
 {
     VerbalExpressions *verEx = VerEx().startOfLine(YES).then(@"a").maybe(@"b");
@@ -157,7 +165,8 @@
     VerbalExpressions *verEx = VerEx().startOfLine(YES).beginCapture().word().endCapture();
     NSRegularExpression *regex = verEx.regularExpression;
     NSTextCheckingResult *match = [regex firstMatchInString:text options:kNilOptions range:NSMakeRange(0, text.length)];
-    STAssertEqualObjects([text substringWithRange:[match rangeAtIndex:1]], @"Jerry", @"successfully captures player by index");
+    NSString *result = [text substringWithRange:[match rangeAtIndex:1]];
+    STAssertEqualObjects(result, @"Jerry", @"successfully captures player by index");
 }
 
 - (void)testURL
@@ -171,7 +180,7 @@
     .anythingBut(@" ")
     .endOfLine(YES);
     
-    STAssertEqualObjects(verEx.description, @"^(http)(s)?(:\\/\\/)(www)?([^ ]*)$", @"successfully builds regex for matching URLs");
+    STAssertEqualObjects(verEx.regularExpression.pattern, @"^(?:http)(?:s)?(?::\\/\\/)(?:www)?(?:[^ ]*)$", @"successfully builds regex for matching URLs");
     STAssertTrue(verEx.test(@"http://google.com"), @"matches regular http URL");
     STAssertTrue(verEx.test(@"https://google.com"), @"matches https URL");
     STAssertTrue(verEx.test(@"https://www.google.com"), @"matches a URL with www");

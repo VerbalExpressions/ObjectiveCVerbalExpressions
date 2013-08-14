@@ -84,7 +84,7 @@ VerbalExpressions *VerEx()
 {
     return ^VerbalExpressions *(NSString *value) {
         value = [self sanitize:value];
-        self.add([NSString stringWithFormat:@"(%@)", value]);
+        self.add([NSString stringWithFormat:@"(?:%@)", value]);
         return self;
     };
 }
@@ -93,7 +93,7 @@ VerbalExpressions *VerEx()
 {
     return ^VerbalExpressions *(NSString *value) {
         value = [self sanitize:value];
-        self.add([NSString stringWithFormat:@"(%@)?", value]);
+        self.add([NSString stringWithFormat:@"(?:%@)?", value]);
         return self;
     };
 }
@@ -101,7 +101,7 @@ VerbalExpressions *VerEx()
 - (VerbalExpressions *(^)())anything
 {
     return ^VerbalExpressions *() {
-        self.add(@"(.*)");
+        self.add(@"(?:.*)");
         return self;
     };
 }
@@ -110,7 +110,7 @@ VerbalExpressions *VerEx()
 {
     return ^VerbalExpressions *(NSString *value) {
         value = [self sanitize:value];
-        self.add([NSString stringWithFormat:@"([^%@]*)", value]);
+        self.add([NSString stringWithFormat:@"(?:[^%@]*)", value]);
         return self;
     };
 }
@@ -143,7 +143,7 @@ VerbalExpressions *VerEx()
 - (VerbalExpressions *(^)())lineBreak
 {
     return ^VerbalExpressions *() {
-        self.add(@"(\\n|(\\r\\n))");
+        self.add(@"(?:\\n|(?:\\r\\n))");
         return self;
     };
 }
@@ -257,12 +257,12 @@ VerbalExpressions *VerEx()
 {
     return ^VerbalExpressions *(NSString *value) {
         if ([self.prefixes rangeOfString:@"("].location == NSNotFound) {
-            self.prefixes = [self.prefixes stringByAppendingString:@"("];
+            self.prefixes = [self.prefixes stringByAppendingString:@"(?:"];
         }
         if ([self.suffixes rangeOfString:@")"].location == NSNotFound) {
             self.suffixes = [self.suffixes stringByAppendingString:@")"];
         }
-        self.add(@")|(");
+        self.add(@")|(?:");
         if (value) {
             self.then(value);
         }
