@@ -43,6 +43,14 @@
     
     STAssertEqualObjects(@"(?:lions)", verEx.regularExpression.pattern, @"correctly build find regex");
     STAssertTrue(verEx.test(@"lions"), @"correctly match find");
+    
+    NSString *text = @"lions, tigers, and bears, oh my!";
+    STAssertTrue(verEx.test(text), @"match part of a string with find");
+    
+    NSRegularExpression *regex = verEx.regularExpression;
+    NSTextCheckingResult *match = [regex firstMatchInString:text options:kNilOptions range:NSMakeRange(0, text.length)];
+    NSString *result = [text substringWithRange:[match rangeAtIndex:0]];
+    STAssertEqualObjects(result, @"lions", @"only match the `find` part of a string");
 }
 
 - (void)testMaybe
@@ -58,6 +66,7 @@
     VerbalExpressions *verEx = VerEx().startOfLine(YES).anything();
     
     STAssertTrue(verEx.test(@"what"), @"anything is matched");
+    STAssertTrue(verEx.test(@"The quick brown fox jumps over the lazy dog."), @"anything is matched");
 }
 
 - (void)testAnythingBut
@@ -122,10 +131,14 @@
 
 - (void)testAnyOf
 {
-    VerbalExpressions *verEx = VerEx().startOfLine(YES).then(@"a").anyOf(@"xyz");
+    VerbalExpressions *verEx = nil;
     
+    verEx = VerEx().startOfLine(YES).then(@"a").anyOf(@"xyz");
     STAssertTrue(verEx.test(@"ay"), @"has an x, y, or z after a");
     STAssertFalse(verEx.test(@"abc"), @"doesn't have an x, y, or z after a");
+    
+    verEx = VerEx().anyOf(@"aeiou");
+    STAssertTrue(verEx.test(@"fox"), @"finds a vowel");
 }
 
 - (void)testWithAnyCase
@@ -147,16 +160,21 @@
     STAssertTrue(verEx.test(@"a\nb"), @"b is on the second line");
     
     verEx.searchOneLine(YES);
-    
+
     STAssertTrue(verEx.test(@"a\nb"), @"b is on the second line but we are only searching the first");
 }
 
 - (void)testOr
 {
-    VerbalExpressions *verEx = VerEx().startOfLine(YES).then(@"abc").or(@"def");
+    VerbalExpressions *verEx = nil;
     
+    verEx = VerEx().startOfLine(YES).then(@"abc").or(@"def");
     STAssertTrue(verEx.test(@"defzzz"), @"starts with abc or def");
     STAssertFalse(verEx.test(@"xyzabc"), @"doesn't start with abc or def");
+    
+    verEx = VerEx().find(@"http://").or(@"ftp://");
+    STAssertTrue(verEx.test(@"ftp://ftp.google.com/"), @"matches ftp://");
+    STAssertTrue(verEx.test(@"http://www.google.com"), @"matches http://");
 }
 
 - (void)testCapture

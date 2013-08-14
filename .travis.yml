@@ -1,7 +1,9 @@
 language: objective-c
 before_install:
+  - brew update
+  - brew install xctool
   - sudo easy_install cpp-coveralls
 script:
-  - make test-with-coverage
+  - make test
 after_success:
-  - make send-coverage
+- ./coveralls.sh -r ./ -e VerbalExpressions -e VerbalExpressionsTests
