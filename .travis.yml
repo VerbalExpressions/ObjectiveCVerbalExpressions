@@ -6,4 +6,4 @@ before_install:
 script:
   - make test
 after_success:
-- ./coveralls.sh -r ./ -e VerbalExpressions -e VerbalExpressionsTests
+  - ./coveralls.sh -r ./ -e VerbalExpressions -e VerbalExpressionsTests --verbose
