@@ -141,6 +141,24 @@
     STAssertTrue(verEx.test(@"fox"), @"finds a vowel");
 }
 
+- (void)testRange
+{
+    VerbalExpressions *verEx = nil;
+    
+    verEx = VerEx().range(@[@"0", @"9"]);
+    STAssertTrue(verEx.test(@"5"), @"works with a range of numbers");
+    STAssertFalse(verEx.test(@"Q"), @"works with a range of numbers");
+    
+    verEx = VerEx().range(@[@"A", @"Z"]);
+    STAssertTrue(verEx.test(@"Q"), @"works with a range of letters");
+    STAssertFalse(verEx.test(@"q"), @"works with a range of letters");
+    STAssertFalse(verEx.test(@"5"), @"works with a range of letters");
+    
+    verEx.withAnyCase(YES);
+    STAssertTrue(verEx.test(@"Q"), @"works with a range of letters");
+    STAssertTrue(verEx.test(@"q"), @"works with a range of letters");
+}
+
 - (void)testWithAnyCase
 {
     VerbalExpressions *verEx = VerEx().startOfLine(YES).then(@"a");
@@ -162,6 +180,12 @@
     verEx.searchOneLine(YES);
 
     STAssertTrue(verEx.test(@"a\nb"), @"b is on the second line but we are only searching the first");
+}
+
+- (void) testMultiple
+{
+    VerbalExpressions *verEx = VerEx().startOfLine(YES).then(@"b").multiple(@"a").then(@"c").endOfLine(YES);
+    STAssertTrue(verEx.test(@"baac"), @"multiple a, after b, before c");
 }
 
 - (void)testOr
