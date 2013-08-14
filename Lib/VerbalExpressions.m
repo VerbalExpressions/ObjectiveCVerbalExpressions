@@ -270,6 +270,24 @@ VerbalExpressions *VerEx()
     };
 }
 
+- (VerbalExpressions *(^)())beginCapture
+{
+    return ^VerbalExpressions *() {
+        self.suffixes = [self.suffixes stringByAppendingString:@")"];
+        self.add(@"(");
+        return self;
+    };
+}
+
+- (VerbalExpressions *(^)())endCapture
+{
+    return ^VerbalExpressions *() {
+        self.suffixes = [self.suffixes substringToIndex:self.suffixes.length - 1];
+        self.add(@")");
+        return self;
+    };
+}
+
 - (BOOL(^)(NSString *))test
 {
     return ^BOOL (NSString *toTest) {

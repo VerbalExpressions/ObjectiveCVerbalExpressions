@@ -31,6 +31,9 @@
 @property (nonatomic, readonly) VerbalExpressions *(^searchOneLine)(BOOL enable);
 @property (nonatomic, readonly) VerbalExpressions *(^multiple)(NSString *value);
 @property (nonatomic, readonly) VerbalExpressions *(^or)(NSString *value);
+@property (nonatomic, readonly) VerbalExpressions *(^beginCapture)();
+@property (nonatomic, readonly) VerbalExpressions *(^endCapture)();
+
 @property (nonatomic, readonly) BOOL (^test)(NSString *toTest);
 
 @property (nonatomic, readonly) NSRegularExpression *regularExpression;

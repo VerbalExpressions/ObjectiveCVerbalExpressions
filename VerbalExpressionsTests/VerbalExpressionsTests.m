@@ -151,6 +151,15 @@
     STAssertFalse(verEx.test(@"xyzabc"), @"doesn't start with abc or def");
 }
 
+- (void)testCapture
+{
+    NSString *text = @"Jerry scored 5 goals!";
+    VerbalExpressions *verEx = VerEx().startOfLine(YES).beginCapture().word().endCapture();
+    NSRegularExpression *regex = verEx.regularExpression;
+    NSTextCheckingResult *match = [regex firstMatchInString:text options:kNilOptions range:NSMakeRange(0, text.length)];
+    STAssertEqualObjects([text substringWithRange:[match rangeAtIndex:1]], @"Jerry", @"successfully captures player by index");
+}
+
 - (void)testURL
 {
     VerbalExpressions *verEx = VerEx()
