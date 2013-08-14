@@ -40,7 +40,7 @@
 - (void)testFind
 {
     VerbalExpressions *verEx = VerEx().find(@"lions");
-    NSLog(@"%@", verEx.regularExpression.pattern);
+    
     STAssertEqualObjects(@"(?:lions)", verEx.regularExpression.pattern, @"correctly build find regex");
     STAssertTrue(verEx.test(@"lions"), @"correctly match find");
 }
