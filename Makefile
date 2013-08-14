@@ -27,4 +27,6 @@ test-with-coverage:
 		
 send-coverage:
 	coveralls \
+		-e VerbalExpressions \
+		-e VerbalExpressionsTests \
 		--verbose
