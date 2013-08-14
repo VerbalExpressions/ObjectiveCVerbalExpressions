@@ -241,14 +241,11 @@ VerbalExpressions *VerEx()
 {
     return ^VerbalExpressions *(NSString *value) {
         value = [self sanitize:value];
-        switch ([value characterAtIndex:0]) {
-            case '*':
-            case '+':
-                break;
-            default:
-                value = [value stringByAppendingString:@"+"];
+        NSString *suffix = [value substringFromIndex:value.length - 1];
+        if (![suffix isEqualToString:@"*"] && ![suffix isEqualToString:@"+"]) {
+            value = [value stringByAppendingString:@"+"];
         }
-        self.add(@"");
+        self.add(value);
         return self;
     };
 }
