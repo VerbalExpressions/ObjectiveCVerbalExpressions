@@ -37,6 +37,7 @@
 @property (nonatomic, readonly) BOOL (^test)(NSString *toTest);
 
 @property (nonatomic, readonly) NSRegularExpression *regularExpression;
+@property (nonatomic, readonly) NSRegularExpression *regex;
 
 + (VerbalExpressions *)instantiate:(void (^)(VerbalExpressions *ve))block;
 + (VerbalExpressions *)expressions;
