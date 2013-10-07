@@ -52,8 +52,15 @@
 
 - (OCVerbalExpression *)then:(NSString *)value
 {
-    value = [self sanitize:value];
-    [self add:[NSString stringWithFormat:@"(%@)", value]];
+    //value = [self sanitize:value];
+    [self add:[NSString stringWithFormat:@"%@", value]];
+    return self;
+}
+
+- (OCVerbalExpression *)thenWithGroup:(void(^)(void))valuesToGroup {
+    [self add:@"("];
+    valuesToGroup();
+    [self add:@")"];
     return self;
 }
 
@@ -80,6 +87,31 @@
 - (OCVerbalExpression *)something
 {
     [self add:@"(.+)"];
+    return self;
+}
+
+- (OCVerbalExpression *)anyWhiteSpace
+{
+    [self add:@"\\s*"];
+    return self;
+}
+
++ (NSString *)orWithObjects:(NSArray *)objects {
+    NSMutableString *orString = [NSMutableString stringWithString:@"("];
+    [objects enumerateObjectsUsingBlock:^(NSString *value, NSUInteger idx, BOOL *stop) {
+        [orString appendString:[NSString stringWithFormat:@"%@", value]];
+        if (idx < [objects count] - 1) {
+            [orString appendString:@"|"];
+        }
+    }];
+    [orString appendString:@")"];
+    return orString;
+}
+
+- (OCVerbalExpression *)orWithGroup:(void(^)(void))valuesToGroup {
+    [self add:@"|("];
+    valuesToGroup();
+    [self add:@")"];
     return self;
 }
 
@@ -217,7 +249,7 @@
 - (NSRegularExpression *)regularExpression
 {
     NSError *error = nil;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:self.pattern
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:[self sanitize:self.pattern]
                                                                            options:self.modifiers
                                                                              error:&error];
     if (error) {
@@ -233,10 +265,15 @@
     return self.regularExpression.pattern;
 }
 
+- (NSString *)expressionString {
+    return self.pattern;
+}
+
 #pragma mark praivate methods
 
 - (NSString *)sanitize:(NSString *)value
 {
+    return value;
     if (!value) {
         return nil;
     }

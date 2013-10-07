@@ -33,6 +33,7 @@
 - (OCVerbalExpression *)endOfLine:(BOOL)enable;
 - (OCVerbalExpression *)find:(NSString *)value;
 - (OCVerbalExpression *)then:(NSString *)value;
+- (OCVerbalExpression *)thenWithGroup:(void(^)(void))valuesToGroup;
 - (OCVerbalExpression *)maybe:(NSString *)value;
 - (OCVerbalExpression *)anything;
 - (OCVerbalExpression *)anythingBut:(NSString *)value;
@@ -42,6 +43,7 @@
 - (OCVerbalExpression *)br;
 - (OCVerbalExpression *)tab;
 - (OCVerbalExpression *)word;
+- (OCVerbalExpression *)anyWhiteSpace;
 - (OCVerbalExpression *)anyOf:(NSString *)value;
 - (OCVerbalExpression *)any:(NSString *)value;
 - (OCVerbalExpression *)range:(NSArray *)args;
@@ -49,8 +51,13 @@
 - (OCVerbalExpression *)searchOneLine:(BOOL)enable;
 - (OCVerbalExpression *)multiple:(NSString *)value;
 - (OCVerbalExpression *)or:(NSString *)value;
+- (OCVerbalExpression *)orWithGroup:(void(^)(void))valuesToGroup;
+
++ (NSString *)orWithObjects:(NSArray *)objects;
 
 - (BOOL)test:(NSString *)toTest;
 - (NSString *)replaceWithSource:(NSString *)source value:(NSString *)value;
+
+- (NSString *)expressionString;
 
 @end
