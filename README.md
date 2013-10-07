@@ -59,6 +59,41 @@ NSString *result2 = [[[OCVerbalExpression new] find:@"red"] replaceWithSource:@"
 NSLog(@"%@", result2); // Outputs "We have a blue house"
 ```
 
+### Complex example:
+
+```objc
+// Example where you have an HTML string where you want to take out img tags that have either no extension or a
+// pdf, doc, docx, xls, xlsx extension
+NSString *HTML = @"<div><img src=\"asd1\"></div> <div><img src=\"asd2.pdf\"></div><div><img src=\"asd3.pdf\"></div><div><img src=\"asd4.pdf\"></div><div><img src=\"asd5.pdf\"></div><div><img src=\"asd6.pdf\"></div><div><img src=\"asd7.pdf\"></div><div><img src=\"asd8.pdf\"></div><div><img src=\"asd9.pdf\"></div><div><img src=\"asd11.pdf\"></div><div><img src=\"asd111\"></div><div><img src=\"asd1111.xls\"></div><div><img src=\"asd11111.png\"></div><div><img src=\"asd222.jpg\"></div><div><img src=\"asd343.xlsx\"></div>";
+    
+OCVerbalExpression *complexExpr = [OCVerbalExpression new];
+[[[[[[[complexExpr find:@"<div><img"]
+            anythingBut:@">"]
+            anyWhiteSpace]
+                   then:@"src"]
+            anyWhiteSpace]
+                   then:@"="]
+            anyWhiteSpace];
+    
+[complexExpr then:[OCVerbalExpression orWithObjects:@[@"'", @"\""]]];
+[complexExpr anythingBut:[OCVerbalExpression orWithObjects:@[@"'", @".", @"\""]]];
+[complexExpr thenWithGroup:^{
+    [complexExpr thenWithGroup:^{
+        [complexExpr then:@"."];
+        [complexExpr then:[OCVerbalExpression orWithObjects:@[@"pdf", @"doc", @"docx", @"xls", @"xlsx"]]];
+        [complexExpr then:[OCVerbalExpression orWithObjects:@[@"'", @"\""]]];
+    }];
+    [complexExpr orWithGroup:^{
+        [complexExpr then:@"'"];
+        [complexExpr or:@"\""];
+    }];
+}];
+[[[[complexExpr anyWhiteSpace] then:@">"] anyWhiteSpace] then:@"</div>"];
+
+NSString *result2 = [complexExpr replaceWithSource:HTML value:@""];
+NSLog(@"%@", result2); // <div><img src="asd11111.png"></div><div><img src="asd222.jpg"></div>
+```
+
 ## API documentation
 
 I haven't added much documentation to this repo yet, but you can find the documentation for the original JavaScript repo on their [wiki](https://github.com/jehna/VerbalExpressions/wiki).  Most of the methods have been ported as of v0.1.0 of the JavaScript repo.  Just be sure to use the syntax explained above rather than the dot notation :)
