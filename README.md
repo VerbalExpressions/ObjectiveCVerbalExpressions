@@ -42,7 +42,7 @@ if (tester.test(testMe)) {
     NSLog(@"%@", @"The URL is incorrect");
 }
 
-NSLog(@"%@", tester); // Ouputs the actual expression used: "^(http)(s)?(:�_/�_/)(www)?([^ ]*)$"
+NSLog(@"%@", tester); // Outputs the actual expression used: "^(http)(s)?(:�_/�_/)(www)?([^ ]*)$"
 ```
 
 ### Replacing strings
